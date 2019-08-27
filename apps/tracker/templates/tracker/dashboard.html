@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'tracker/style.css' %}">
+    <title>Dashboard</title>
+    <meta name="description" content="Jobs Dashboard">
+    <link rel="shortcut icon" type="image/png" href="{% static 'tracker/favicon.ico' %}" />
+
+</head>
+
+<body style="padding: 2.5%;">
+
+
+    <div class="row justify-content-center" id="my_container">
+        <div class="col-6">
+            <h1>New Review Site</h1>
+            <form action="../tracker/" method="POST">
+                {% csrf_token %}
+                <div class="form-row">
+                    <div class="col">
+                        <label for="url">Website</label>
+                        <input type="url" class="form-control" name="url" placeholder="https://example.com"
+                            pattern="https://.*" size="30" required>
+                        {{ request.session.error }}
+                    </div>
+                </div>
+                <br>
+                <button type="submit" class="btn btn-primary">Create List</button>
+            </form>
+        </div>
+    </div>
+
+    <h2>{{ review_total | safe}} </h2>
+
+
+</body>
+
+</html>
